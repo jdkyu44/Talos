@@ -25,8 +25,8 @@ public class CameraController : MonoBehaviour
     }
     private void LateUpdate()
     {
-        float clampedX = Mathf.Clamp(player.position.x, minX + halfWidth, maxX + halfWidth);
-        float clampedY = Mathf.Clamp(player.position.y, minY + halfHeight, maxY + halfHeight);
+        float clampedX = Mathf.Clamp(player.position.x, minX + halfWidth, maxX - halfWidth);
+        float clampedY = Mathf.Clamp(player.position.y, minY + halfHeight, maxY - halfHeight);
         transform.position = new Vector3(clampedX, clampedY, transform.position.z);
     }
 }
