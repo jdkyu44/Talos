@@ -17,7 +17,7 @@ public class EnemyData : ScriptableObject
 
     [Header("Basic Stats")]
     public float maxHp;
-    public float damage;
+    public float attackDamage;
     public float moveSpeed;
 
     [Header("Movement Pattern")]
