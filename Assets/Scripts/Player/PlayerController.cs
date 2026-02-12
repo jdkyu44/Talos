@@ -4,16 +4,31 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
-    private bool isGrounded = true;
+    public bool isGrounded = true;
     Rigidbody2D rb;
 
-    private void Start()
+    public bool isFacingRight = true;
+    public bool isFacingLeft = false;
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            isFacingRight = true;
+            isFacingLeft = false;
+        }
+
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            isFacingLeft = true;
+            isFacingRight = false;
+        }
+
         Move();
         Jump();
     }

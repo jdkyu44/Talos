@@ -6,11 +6,11 @@ public class PlayerStats : MonoBehaviour
     public float currentHp;
     public float attackDamage = 10f;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            TakeDamage(other.GetComponent<EnemyStats>().attackDamage);
+            TakeDamage(collision.GetComponent<EnemyStats>().attackDamage);
         }
     }
 
