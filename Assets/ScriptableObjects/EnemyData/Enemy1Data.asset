@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyName: Enemy1
   enemyType: 0
   maxHp: 30
-  damage: 1
+  attackDamage: 1
   moveSpeed: 3
-  detectRange: 5
+  detectRange: 7
