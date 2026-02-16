@@ -9,31 +9,34 @@ public enum AttackType
     Down
 }
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class SwordAttack : MonoBehaviour
 {
+    private AttackType attackType;
+
     public GameObject rightHitBox;
     public GameObject leftHitBox;
     public GameObject upHitBox;
     public GameObject downHitBox;
 
-    public float attackSpeed = 0.5f;
+    public float attackSpeed = 0.3f;
 
     public bool isAttacking = false;
     public bool canAttack = true;
 
-    private AttackType attackType;
+    private GameObject player;
     private PlayerController playerController;
 
-    private void Awake()
+    private void Start()
     {
-        playerController = GetComponent<PlayerController>();
+        player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
     }
 
     private void Update()
     {
         if (canAttack && Input.GetKeyDown(KeyCode.R))
         {
-            GetAttackType();
+            attackType = GetAttackType();
 
             switch (attackType)
             {
