@@ -1,5 +1,13 @@
 using UnityEngine;
 
+public enum AttackType
+{
+    Right,
+    Left,
+    Up,
+    Down
+}
+
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -9,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     public bool isFacingRight = true;
     public bool isFacingLeft = false;
+
+    public AttackType attackType;
 
     private void Awake()
     {
@@ -31,6 +41,8 @@ public class PlayerController : MonoBehaviour
 
         Move();
         Jump();
+
+        attackType = GetAttackType();
     }
 
     private void Move()
@@ -61,5 +73,16 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    public AttackType GetAttackType()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+            return AttackType.Up;
+
+        if (Input.GetKey(KeyCode.DownArrow) && !isGrounded)
+            return AttackType.Down;
+
+        return isFacingRight ? AttackType.Right : AttackType.Left;
     }
 }

@@ -1,14 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-public enum AttackType
-{
-    Right,
-    Left,
-    Up,
-    Down
-}
-
 public class SwordAttack : MonoBehaviour
 {
     private AttackType attackType;
@@ -36,7 +28,7 @@ public class SwordAttack : MonoBehaviour
     {
         if (canAttack && Input.GetKeyDown(KeyCode.R))
         {
-            attackType = GetAttackType();
+            attackType = playerController.attackType;
 
             switch (attackType)
             {
@@ -75,16 +67,5 @@ public class SwordAttack : MonoBehaviour
 
         yield return new WaitForSeconds(attackSpeed);
         canAttack = true;
-    }
-
-    private AttackType GetAttackType()
-    {
-        if (Input.GetKey(KeyCode.UpArrow))
-            return AttackType.Up;
-
-        if (Input.GetKey(KeyCode.DownArrow) && !playerController.isGrounded)
-            return AttackType.Down;
-
-        return playerController.isFacingRight ? AttackType.Right : AttackType.Left;
     }
 }
