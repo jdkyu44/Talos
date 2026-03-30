@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public EnemyData enemyData;
+    EnemyKnockback enemyKnockback;
 
     [SerializeField] private Transform patrolRoot;
     private Transform startPoint;
@@ -18,10 +19,15 @@ public class EnemyMovement : MonoBehaviour
 
         player = GameObject.FindWithTag("Player").transform;
         currentTarget = endPoint;
+
+        enemyKnockback = GetComponent<EnemyKnockback>();
     }
 
     private void Update()
     {
+        if (enemyKnockback.isKnockedback == true)
+            return;
+
         if (Mathf.Abs(Vector3.Distance(player.position, transform.position)) <= enemyData.detectRange)
         {
             ChasePlayer();
@@ -42,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, currentTarget.position);
 
-        if(distance < 0.01f)
+        if(distance < 0.1f)
         {
             currentTarget = currentTarget == startPoint ? endPoint : startPoint;
         }

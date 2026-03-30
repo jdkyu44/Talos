@@ -20,13 +20,19 @@ public class PlayerController : MonoBehaviour
 
     public AttackType attackType;
 
+    PlayerAttacked playerAttacked;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerAttacked = GetComponent<PlayerAttacked>();
     }
 
     private void Update()
     {
+        if (playerAttacked.isKnockedback == true)
+            return;
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
             isFacingRight = true;
